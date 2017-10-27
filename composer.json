@@ -35,13 +35,19 @@
         ]
     },
     "scripts": {
-        "test": "./bin/phpunit -c ./Test/phpunit.xml",
-        "watch": [
-            "./bin/phpunit-watcher watch"
-        ]
+      "test": "phpunit -c ./Test/phpunit.xml",
+      "test:unit": "phpunit -c ./Test/phpunit.xml --testsuite unit",
+      "test:integration": "phpunit -c ./Test/phpunit.xml --testsuite integration",
+      "test:watch": [
+          "./bin/phpunit-watcher watch"
+      ],
+      "clean": [
+        "rm -rf ./{bin,build/public/assets,vendor,var}",
+        "docker kill PHPWARKS__server",
+        "docker rm PHPWARKS__server"
+      ]
     },
     "config": {
-        "bin-dir": "./bin",
         "process-timeout": 0
     }
 }

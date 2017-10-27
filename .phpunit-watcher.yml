@@ -1,0 +1,10 @@
+watch:
+  directories:
+    - src
+    - test
+  fileMask: '*.php'
+phpunit:
+  arguments: '--configuration ./Test/phpunit.xml --testdox'
+notifications:
+  passingTests: false
+  failingTests: false

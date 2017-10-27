@@ -1,0 +1,19 @@
+version: "2"
+services:
+  server:
+    environment:
+     - ENVIRONMENT=test
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/var/www/html
+
+  composer:
+    image: prooph/composer:7.1
+    volumes:
+      - .:/app
+    working_dir: /app
+    links:
+      - server
+    command: "install"

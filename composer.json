@@ -1,0 +1,53 @@
+{
+    "name": "phpwarks/website-server",
+    "description": "A webserver ran by ReactPHP",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nigel Greenway",
+            "email": "github@futurepixels.co.uk"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "monolog/monolog": "^1.23",
+        "slim/slim": "^3.8",
+        "slim/flash": "^0.2.0",
+        "slim/twig-view": "^2.3",
+        "vlucas/phpdotenv": "^2.4",
+        "react/http": "^0.7.4",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4",
+        "sebastianfeldmann/captainhook": "^2.0",
+        "spatie/phpunit-watcher": "^1.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "\\src\\App",
+            "Test\\": "\\Test"
+        },
+        "files": [
+            "src/App/Utility/Environment.php",
+            "src/App/Utility/ExtensionToContentType.php"
+        ]
+    },
+    "scripts": {
+      "test": "phpunit -c ./Test/phpunit.xml",
+      "test:unit": "phpunit -c ./Test/phpunit.xml --testsuite unit",
+      "test:integration": "phpunit -c ./Test/phpunit.xml --testsuite integration",
+      "test:watch": [
+          "./bin/phpunit-watcher watch"
+      ],
+      "clean": [
+        "rm -rf ./{bin,build/public/assets,vendor,var}",
+        "docker kill PHPWARKS__server",
+        "docker rm PHPWARKS__server"
+      ]
+    },
+    "config": {
+        "process-timeout": 0
+    }
+}
